@@ -1,0 +1,264 @@
+{
+  "page_title": "Liberty Academy | Премиум подготовка к переезду в США",
+  "meta_description": "Специализированная языковая и культурная подготовка к переезду в США. Сдайте TOEFL/IELTS, пройдите собеседование и адаптируйтесь к жизни в Америке.",
+  "hero": {
+    "badge": "Ваш надежный транзит в США",
+    "title": "Английский для переезда в США: от <span class=\"gradient-text\">A2 до Native</span>",
+    "description": "Премиум-подготовка к релокации в США. Сдайте TOEFL, пройдите интервью в FAANG и адаптируйтесь к американской культуре с носителями языка.",
+    "stats": [
+      {
+        "value": "98.4%",
+        "label": "успешных собеседований"
+      },
+      {
+        "value": "500+",
+        "label": "студентов в США"
+      },
+      {
+        "value": "100%",
+        "label": "Native Speakers (USA)"
+      }
+    ]
+  },
+  "programs": [
+    {
+      "level": "A2-B1",
+      "featured": false,
+      "title": "Survival English & Relocation Basics",
+      "description": "Бытовая адаптация. Научитесь понимать, почему в американских ценниках нет налогов, как вежливо объяснить арендодателю, что раковина сломалась, и как не зависнуть, когда кассир в Costco спросит: \"Did you find everything okay?\"",
+      "features": [
+        "Бытовые диалоги и лексика",
+        "Заполнение документов и анкет",
+        "Преодоление языкового шока"
+      ]
+    },
+    {
+      "level": "B2",
+      "featured": true,
+      "title": "USA Academic & Visa Prep",
+      "description": "Сфокусированная подготовка к TOEFL/IELTS. Докажем консулу на собеседовании, что вы едете грызть гранит науки, а не мыть посуду в Бруклине или нелегально собирать клубнику во Флориде.",
+      "features": [
+        "TOEFL / IELTS форматы и лайфхаки",
+        "Симуляция интервью в посольстве",
+        "Написание Academic Essays"
+      ]
+    },
+    {
+      "level": "B2-C1",
+      "featured": false,
+      "title": "Business & FAANG Career",
+      "description": "Собеседования в FAANG. Научитесь рассказывать о своих факапах (dropped the ball) с улыбкой на миллион долларов и отвечать на вопрос \"What's your weakness?\" так, чтобы рекрутер расплакался от восторга и дал оффер.",
+      "features": [
+        "Прохождение интервью в США (FAANG)",
+        "Pitching & Investor Communication",
+        "Бизнес-этикет в американских компаниях"
+      ]
+    },
+    {
+      "level": "C1-C2",
+      "featured": false,
+      "title": "American Accent & Integration",
+      "description": "General American Accent. Перестаем говорить с интонацией сурового шпиона из боевиков 90-х. Освоим сленг, мемы и великое американское искусство улыбаться и говорить 15 минут ни о чем (Small Talk).",
+      "features": [
+        "Снижение акцента (General American Accent)",
+        "Американский юмор, мемы и сленг",
+        "Свободные дискуссии на сложные темы"
+      ]
+    }
+  ],
+  "teachers": [
+    {
+      "key": "john",
+      "name": "John Davis",
+      "state": "California, USA",
+      "bio": "Специалист по снижению акцента (Accent Reduction) и подготовке к академическим тестам TOEFL/IELTS. 8 лет опыта работы в UC Berkeley.",
+      "image": "assets/teacher_john.png",
+      "tags": [
+        "TOEFL Spec",
+        "Accent Reduction",
+        "Columbia M.A."
+      ],
+      "subtitles": [
+        { "time": 0, "text": "Hello there! My name is John Davis." },
+        { "time": 2, "text": "I'm a native English speaker from sunny California." },
+        { "time": 5, "text": "My specialty is helping relocators break the language barrier," },
+        { "time": 8, "text": "sharpen their General American Accent, and score high on TOEFL." },
+        { "time": 12, "text": "Let's make your American Dream come true together at Liberty!" }
+      ]
+    },
+    {
+      "key": "sarah",
+      "name": "Sarah Miller",
+      "state": "New York, USA",
+      "bio": "Коуч по разговорному английскому и культурной адаптации. Поможет освоить живой американский сленг, юмор и преодолеть стеснение при общении.",
+      "image": "assets/teacher_sarah.png",
+      "tags": [
+        "Speaking Club",
+        "US Culture",
+        "NYU Alumna"
+      ],
+      "subtitles": [
+        { "time": 0, "text": "Hi! I'm Sarah Miller from New York City." },
+        { "time": 2, "text": "Welcome to my immersive English programs!" },
+        { "time": 4, "text": "We will explore active American slang, speaking habits," },
+        { "time": 7, "text": "and simulate coffee meetups to build confidence in NY." },
+        { "time": 10, "text": "Can't wait to see you in our dynamic speaking club. Cheers!" }
+      ]
+    },
+    {
+      "key": "david",
+      "name": "David King",
+      "state": "Texas, USA",
+      "bio": "Эксперт по Business English и подготовке к интервью. Автор методик по прохождению Behavioral Interview в компании FAANG и ведущие инвестфонды.",
+      "image": "assets/teacher_david.png",
+      "tags": [
+        "FAANG Prep",
+        "Business English",
+        "UT Austin MBA"
+      ],
+      "subtitles": [
+        { "time": 0, "text": "Greetings. I'm David King, native speaker from Austin, Texas." },
+        { "time": 3, "text": "Are you aiming for a career at Google, Amazon, or US startups?" },
+        { "time": 7, "text": "We will focus on professional communication, pitch templates," },
+        { "time": 10, "text": "and custom interview preparation to impress American managers." }
+      ]
+    }
+  ],
+  "rates": [
+    {
+      "id": "base",
+      "name": "Base Relocation",
+      "desc": "Для самостоятельных студентов, желающих освоить базу для адаптации",
+      "prices": {
+        "monthly": 18500,
+        "yearly": 14800
+      },
+      "featured": false,
+      "features": [
+        { "text": "8 уроков в месяц с носителем", "enabled": true },
+        { "text": "Доступ к платформе и словарю 24/7", "enabled": true },
+        { "text": "Групповой разговорный клуб (2 раза в неделю)", "enabled": true },
+        { "text": "Подготовка к TOEFL / IELTS", "enabled": false },
+        { "text": "Подготовка к визовому интервью", "enabled": false }
+      ]
+    },
+    {
+      "id": "pro",
+      "name": "USA Immersion Pro",
+      "desc": "Полная интенсивная подготовка к переезду, работе и учебе в США",
+      "prices": {
+        "monthly": 32000,
+        "yearly": 25600
+      },
+      "featured": true,
+      "features": [
+        { "text": "12 уроков в месяц с носителями языка", "enabled": true },
+        { "text": "Подготовка к TOEFL / IELTS (включено)", "enabled": true },
+        { "text": "3 симуляции визового интервью", "enabled": true },
+        { "text": "Разговорный клуб с акцентом на USA culture", "enabled": true },
+        { "text": "Telegram-чат с личным куратором", "enabled": true }
+      ]
+    },
+    {
+      "id": "vip",
+      "name": "VIP Relocation Coach",
+      "desc": "Индивидуальное сопровождение от экспертов по адаптации и карьере в США",
+      "prices": {
+        "monthly": 75000,
+        "yearly": 60000
+      },
+      "featured": false,
+      "features": [
+        { "text": "Безлимитные 1-на-1 сессии с ТОП-коучами", "enabled": true },
+        { "text": "Составление резюме и Cover Letter по стандартам США", "enabled": true },
+        { "text": "Симуляция интервью в FAANG / инвестфонды", "enabled": true },
+        { "text": "Личный консьерж по визовым и бытовым вопросам", "enabled": true },
+        { "text": "Офлайн бранчи в NYC и Москве бесплатно", "enabled": true }
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "key": "Mon",
+      "name": "Пн",
+      "date": "22 июня",
+      "is_weekend": false,
+      "slots": [
+        { "time": "10:00", "booked": false },
+        { "time": "12:00", "booked": true },
+        { "time": "15:00", "booked": false },
+        { "time": "19:00", "booked": false }
+      ]
+    },
+    {
+      "key": "Tue",
+      "name": "Вт",
+      "date": "23 июня",
+      "is_weekend": false,
+      "slots": [
+        { "time": "10:00", "booked": true },
+        { "time": "12:00", "booked": false },
+        { "time": "16:00", "booked": false },
+        { "time": "20:00", "booked": false }
+      ]
+    },
+    {
+      "key": "Wed",
+      "name": "Ср",
+      "date": "24 июня",
+      "is_weekend": false,
+      "slots": [
+        { "time": "09:00", "booked": false },
+        { "time": "14:00", "booked": false },
+        { "time": "16:00", "booked": true },
+        { "time": "18:30", "booked": false }
+      ]
+    },
+    {
+      "key": "Thu",
+      "name": "Чт",
+      "date": "25 июня",
+      "is_weekend": false,
+      "slots": [
+        { "time": "11:00", "booked": false },
+        { "time": "14:00", "booked": true },
+        { "time": "17:00", "booked": false },
+        { "time": "21:00", "booked": false }
+      ]
+    },
+    {
+      "key": "Fri",
+      "name": "Пт",
+      "date": "26 июня",
+      "is_weekend": false,
+      "slots": [
+        { "time": "10:00", "booked": false },
+        { "time": "13:00", "booked": false },
+        { "time": "16:00", "booked": true },
+        { "time": "19:00", "booked": false }
+      ]
+    },
+    {
+      "key": "Sat",
+      "name": "Сб",
+      "date": "27 июня",
+      "is_weekend": true,
+      "slots": [
+        { "time": "12:00", "booked": false },
+        { "time": "15:00", "booked": false },
+        { "time": "18:00", "booked": true }
+      ]
+    },
+    {
+      "key": "Sun",
+      "name": "Вс",
+      "date": "28 июня",
+      "is_weekend": true,
+      "slots": [
+        { "time": "11:00", "booked": true },
+        { "time": "14:00", "booked": false },
+        { "time": "17:00", "booked": false }
+      ]
+    }
+  ]
+}

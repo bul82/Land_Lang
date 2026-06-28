@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberty Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero">
+        <h1 class="hero-title">Подготовься к TOEFL и IELTS</h1>
+        <p class="hero-subtitle">Курсы, которые помогут сдать экзамены и переехать в США за 6 месяцев.</p>
+        <button class="cta-button">Узнать стоимость за 1 минуту</button>
+    </header>
+
+    <section class="test">
+        <h2>Тест на уровень языка</h2>
+        <p>Пройди интерактивный тест и узнай свой уровень английского за 5 минут.</p>
+        <ul>
+            <li>4 простых вопроса</li>
+            <li>Результат сразу после теста</li>
+        </ul>
+        <button id="start-quiz">Начать тест</button>
+    </section>
+
+    <section class="pricing">
+        <h2>Тарифы на курсы</h2>
+        <p>Выбери подходящий тариф и начни обучение.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Курс</th>
+                    <th>Длительность</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Базовый курс TOEFL</td>
+                    <td>3 месяца</td>
+                    <td>30,000 ₽</td>
+                </tr>
+                <tr>
+                    <td>Продвинутый курс IELTS</td>
+                    <td>4 месяца</td>
+                    <td>40,000 ₽</td>
+                </tr>
+                <tr>
+                    <td>Интенсивный курс TOEFL</td>
+                    <td>1.5 месяца</td>
+                    <td>50,000 ₽</td>
+                </tr>
+                <tr>
+                    <td>Подготовка к экзаменам (комбо)</td>
+                    <td>6 месяцев</td>
+                    <td>70,000 ₽</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="personal-cabinet">
+        <h2>Личный кабинет</h2>
+        <p>Все материалы и результаты экзаменов в одном месте.</p>
+        <ul>
+            <li>Доступ к урокам</li>
+            <li>Отслеживание прогресса</li>
+        </ul>
+    </section>
+
+    <section class="feedback">
+        <h2>Обратная связь</h2>
+        <p>Оставь заявку и получи консультацию.</p>
+        <form id="feedback-form">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="date">Дата:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Время:</label>
+            <input type="time" id="time" name="time" required>
+            <label>
+                <input type="checkbox" required>
+                Согласен на обработку персональных данных <a href="privacy.html">(политика конфиденциальности)</a>
+            </label>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

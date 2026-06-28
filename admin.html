@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberty Academy CMS | Панель управления</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="assets/lucide.min.js?v=2.1"></script>
+    <style>
+        :root {
+            --color-primary: #0f172a;
+            --color-primary-light: #1e293b;
+            --color-accent: #b5945b;
+            --color-accent-dark: #8c6c30;
+            --color-bg-light: #fdfbf7;
+            --color-bg-card: #ffffff;
+            --color-border: rgba(15, 23, 42, 0.08);
+            --color-success: #047857;
+            --color-error: #b91c1c;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-muted: #94a3b8;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.03);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.06);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        /* --------------------------------------------------------------------------
+           LOGIN SCREEN
+           -------------------------------------------------------------------------- */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .login-card {
+            background: var(--color-bg-card);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .login-brand {
+            margin-bottom: 30px;
+        }
+
+        .login-brand .logo-accent {
+            color: var(--color-accent);
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .login-brand .logo-sub {
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .login-title {
+            font-size: 1.2rem;
+            color: var(--color-text-primary);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--color-text-primary);
+            background: #ffffff;
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(181, 148, 91, 0.15);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: #ffffff;
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn-save-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: auto;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(181, 148, 91, 0.4);
+            border: 1px solid var(--color-accent);
+            background: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn-save-floating:hover {
+            transform: translateY(-3px);
+            background: var(--color-primary);
+            color: #ffffff;
+            border-color: var(--color-primary);
+        }
+
+        .login-error {
+            color: var(--color-error);
+            font-size: 0.85rem;
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* --------------------------------------------------------------------------
+           MAIN LAYOUT
+           -------------------------------------------------------------------------- */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--color-primary);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 0 24px 30px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-brand .logo-accent {
+            color: var(--color-accent);
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-brand .logo-sub {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            color: var(--color-text-muted);
+            background: transparent;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border-left: 3px solid transparent;
+            width: 100%;
+        }
+
+        .nav-item:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .nav-item.active {
+            color: var(--color-accent);
+            background: rgba(181, 148, 91, 0.06);
+            border-left-color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            padding: 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 20px;
+        }
+
+        .btn-logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition-fast);
+        }
+
+        .btn-logout:hover {
+            background: var(--color-error);
+            border-color: var(--color-error);
+        }
+
+        /* Content Area */
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 40px 50px 100px 50px;
+            max-width: 1200px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--color-primary);
+        }
+
+        .section-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Tab Panes */
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card panels */
+        .cms-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cms-card-title {
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Uploader widgets */
+        .uploader-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .uploader-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .uploader-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .uploader-controls {
+            flex-grow: 1;
+        }
+
+        .btn-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #ffffff;
+            border: 1px dashed var(--color-accent);
+            border-radius: var(--radius-sm);
+            color: var(--color-accent-dark);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-upload:hover {
+            background: rgba(181, 148, 91, 0.05);
+        }
+
+        .btn-upload input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-status {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+        }
+
+        /* --------------------------------------------------------------------------
+           TEACHER SPECIFICS
+           -------------------------------------------------------------------------- */
+        .teacher-box {
+            background: var(--color-bg-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 25px;
+        }
+
+        /* --------------------------------------------------------------------------
+           SCHEDULE SPECIFICS
+           -------------------------------------------------------------------------- */
+        .schedule-day-box {
+            background: var(--color-bg-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 20px;
+        }
+
+        .schedule-slots-editor {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .slot-editor-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 100px;
+            border: 1px solid var(--color-border);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .slot-editor-pill.booked {
+            background: rgba(244, 63, 94, 0.05);
+            border-color: rgba(244, 63, 94, 0.2);
+            color: var(--color-error);
+        }
+
+        .slot-editor-pill button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slot-editor-pill button:hover {
+            color: var(--color-error);
+        }
+
+        .btn-add-slot {
+            background: transparent;
+            border: 1px dashed var(--color-accent);
+            color: var(--color-accent-dark);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-add-slot:hover {
+            background: rgba(181, 148, 91, 0.05);
+        }
+
+        /* --------------------------------------------------------------------------
+           NOTIFICATIONS & DIALOGS
+           -------------------------------------------------------------------------- */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-primary);
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10001;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--color-success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--color-error);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="cmsToast">
+        <i data-lucide="info" id="toastIcon"></i>
+        <span id="toastText">Сообщение</span>
+    </div>
+
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-card">
+            <div class="login-brand">
+                <span class="logo-accent">LIBERTY</span><span class="logo-sub">CMS</span>
+            </div>
+            <h2 class="login-title">Вход в панель управления</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="adminPassInput">Пароль администратора</label>
+                    <input type="password" id="adminPassInput" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <div class="login-error" id="loginErrorMsg">Неверный пароль. Попробуйте еще раз.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Layout Container (Hidden initially until authenticated) -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="logo-accent">LIBERTY</span><span class="logo-sub">CMS</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" onclick="switchTab('general', this)">
+                    <i data-lucide="layout"></i>
+                    <span>Основное и Hero</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('programs', this)">
+                    <i data-lucide="book-open"></i>
+                    <span>Программы</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('teachers', this)">
+                    <i data-lucide="users"></i>
+                    <span>Преподаватели</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('rates', this)">
+                    <i data-lucide="credit-card"></i>
+                    <span>Тарифы</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('schedule', this)">
+                    <i data-lucide="calendar"></i>
+                    <span>Расписание</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="handleLogout()">
+                    <i data-lucide="log-out"></i>
+                    <span>Выйти</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <button class="btn btn-primary btn-save-floating" onclick="saveContent()">
+                <i data-lucide="check"></i>
+                <span>Опубликовать изменения</span>
+            </button>
+
+            <!-- TAB: GENERAL -->
+            <div class="tab-pane active" id="pane-general">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Основная информация</h2>
+                        <p class="section-desc">SEO метаданные, заголовки и статистика главного экрана.</p>
+                    </div>
+                </div>
+
+                <div class="cms-card">
+                    <h3 class="cms-card-title"><i data-lucide="globe"></i> SEO & Мета-теги</h3>
+                    <div class="form-group">
+                        <label for="inPageTitle">Заголовок вкладки браузера (Title)</label>
+                        <input type="text" id="inPageTitle" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inMetaDesc">Описание для поисковиков (Meta Description)</label>
+                        <textarea id="inMetaDesc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="cms-card">
+                    <h3 class="cms-card-title"><i data-lucide="sparkles"></i> Главный экран (Hero)</h3>
+                    <div class="form-group">
+                        <label for="inHeroBadge">Надпись на бейдже</label>
+                        <input type="text" id="inHeroBadge" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inHeroTitle">Главный заголовок (Поддерживает HTML)</label>
+                        <input type="text" id="inHeroTitle" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inHeroDesc">Подзаголовок (Описание под заголовком)</label>
+                        <textarea id="inHeroDesc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="cms-card">
+                    <h3 class="cms-card-title"><i data-lucide="bar-chart-3"></i> Счетчики статистики (Stats)</h3>
+                    <div class="grid-3" id="statsGridContainer">
+                        <!-- Stat items will be generated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: PROGRAMS -->
+            <div class="tab-pane" id="pane-programs">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Программы и Уровни</h2>
+                        <p class="section-desc">Настройка 4 карточек направлений подготовки.</p>
+                    </div>
+                </div>
+                <div id="programsListContainer">
+                    <!-- Dynamic program cards -->
+                </div>
+            </div>
+
+            <!-- TAB: TEACHERS -->
+            <div class="tab-pane" id="pane-teachers">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Преподаватели</h2>
+                        <p class="section-desc">Управление карточками преподавателей и аудиовизитками.</p>
+                    </div>
+                </div>
+                <div id="teachersListContainer">
+                    <!-- Dynamic teacher cards -->
+                </div>
+            </div>
+
+            <!-- TAB: RATES -->
+            <div class="tab-pane" id="pane-rates">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Тарифы</h2>
+                        <p class="section-desc">Редактирование цен, скидок и опций тарифов.</p>
+                    </div>
+                </div>
+                <div id="ratesListContainer">
+                    <!-- Dynamic rates cards -->
+                </div>
+            </div>
+
+            <!-- TAB: SCHEDULE -->
+            <div class="tab-pane" id="pane-schedule">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Интерактивное расписание</h2>
+                        <p class="section-desc">Настройка дат и доступных/занятых временных слотов.</p>
+                    </div>
+                </div>
+                <div id="scheduleListContainer">
+                    <!-- Dynamic days schedule list -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Core Script -->
+    <script>
+        let contentData = null;
+        let authToken = localStorage.getItem('cms_token');
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            if (authToken) {
+                initDashboard();
+            }
+        });
+
+        // --------------------------------------------------------------------------
+        // AUTHENTICATION
+        // --------------------------------------------------------------------------
+        async function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('adminPassInput').value;
+            const errorMsg = document.getElementById('loginErrorMsg');
+            
+            try {
+                const res = await fetch('api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    authToken = data.token;
+                    localStorage.setItem('cms_token', authToken);
+                    initDashboard();
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Ошибка подключения к API', 'error');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('cms_token');
+            authToken = null;
+            location.reload();
+        }
+
+        // --------------------------------------------------------------------------
+        // TAB MANAGEMENT
+        // --------------------------------------------------------------------------
+        function switchTab(tabId, btnElement) {
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            document.getElementById(`pane-${tabId}`).classList.add('active');
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // CORE DASHBOARD INITS
+        // --------------------------------------------------------------------------
+        async function initDashboard() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'flex';
+            
+            showToast('Вход выполнен', 'success');
+            await fetchContent();
+        }
+
+        async function fetchContent() {
+            try {
+                const res = await fetch('api/content', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                if (res.status === 401) {
+                    handleLogout();
+                    return;
+                }
+                contentData = await res.json();
+                populateForm();
+            } catch (err) {
+                console.error(err);
+                showToast('Не удалось загрузить content.json', 'error');
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // FORM DATA BINDING
+        // --------------------------------------------------------------------------
+        function populateForm() {
+            if (!contentData) return;
+
+            // General & Hero
+            document.getElementById('inPageTitle').value = contentData.page_title || '';
+            document.getElementById('inMetaDesc').value = contentData.meta_description || '';
+            document.getElementById('inHeroBadge').value = contentData.hero.badge || '';
+            document.getElementById('inHeroTitle').value = contentData.hero.title || '';
+            document.getElementById('inHeroDesc').value = contentData.hero.description || '';
+
+            // Stats Counters
+            const statsContainer = document.getElementById('statsGridContainer');
+            statsContainer.innerHTML = '';
+            contentData.hero.stats.forEach((stat, index) => {
+                statsContainer.innerHTML += `
+                    <div style="background:#f1f5f9; padding: 15px; border-radius: var(--radius-md)">
+                        <h4 style="margin-bottom:10px; font-size:0.9rem; color:var(--color-accent-dark)">Карточка ${index + 1}</h4>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label>Значение (например: 98.4%)</label>
+                            <input type="text" class="form-control in-stat-val" data-idx="${index}" value="${stat.value}">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0">
+                            <label>Описание</label>
+                            <input type="text" class="form-control in-stat-label" data-idx="${index}" value="${stat.label}">
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Programs
+            const progContainer = document.getElementById('programsListContainer');
+            progContainer.innerHTML = '';
+            contentData.programs.forEach((prog, index) => {
+                const featuresText = prog.features.join('\n');
+                progContainer.innerHTML += `
+                    <div class="cms-card">
+                        <h3 class="cms-card-title"><i data-lucide="graduation-cap"></i> Трек ${index + 1}: ${prog.title}</h3>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Название трека</label>
+                                <input type="text" class="form-control in-prog-title" data-idx="${index}" value="${prog.title}">
+                            </div>
+                            <div class="form-group">
+                                <label>Уровень/Бейдж (например: A2-B1)</label>
+                                <input type="text" class="form-control in-prog-level" data-idx="${index}" value="${prog.level}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Описание трека</label>
+                            <textarea class="form-control in-prog-desc" data-idx="${index}" rows="3">${prog.description}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Опции обучения (по одной строке на опцию)</label>
+                            <textarea class="form-control in-prog-feats" data-idx="${index}" rows="4">${featuresText}</textarea>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0">
+                            <label style="display:inline-flex; align-items:center; gap:8px; text-transform:none">
+                                <input type="checkbox" class="in-prog-featured" data-idx="${index}" ${prog.featured ? 'checked' : ''}>
+                                Выделить карточку (Featured)
+                            </label>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Teachers
+            const tContainer = document.getElementById('teachersListContainer');
+            tContainer.innerHTML = '';
+            contentData.teachers.forEach((t, index) => {
+                // Convert subtitles list of {time, text} back to editable string "[time] Text"
+                const subsLines = t.subtitles.map(s => `[${s.time}] ${s.text}`).join('\n');
+                tContainer.innerHTML += `
+                    <div class="cms-card">
+                        <h3 class="cms-card-title"><i data-lucide="user"></i> Преподаватель ${index + 1}: ${t.name}</h3>
+                        <div class="uploader-row">
+                            <div class="uploader-preview">
+                                <img src="${t.image}" id="img-preview-${t.key}" alt="${t.name}">
+                            </div>
+                            <div class="uploader-controls">
+                                <label style="display:block; font-size:0.75rem; font-weight:600; color:var(--color-text-secondary); margin-bottom:8px">Фотография преподавателя</label>
+                                <div class="btn-upload">
+                                    <i data-lucide="image"></i> Загрузить фото
+                                    <input type="file" accept="image/*" onchange="uploadAsset(this, '${t.key}', 'image')">
+                                </div>
+                                <input type="hidden" class="in-teacher-image" data-idx="${index}" value="${t.image}">
+                                <div class="upload-status" id="upload-status-image-${t.key}">Файл не выбран</div>
+                            </div>
+                        </div>
+                        <div class="grid-2" style="margin-top:20px">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" class="form-control in-teacher-name" data-idx="${index}" value="${t.name}">
+                            </div>
+                            <div class="form-group">
+                                <label>Локация / Штат (например: California, USA)</label>
+                                <input type="text" class="form-control in-teacher-state" data-idx="${index}" value="${t.state}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Теги (через запятую)</label>
+                            <input type="text" class="form-control in-teacher-tags" data-idx="${index}" value="${t.tags.join(', ')}">
+                        </div>
+                        <div class="form-group">
+                            <label>Биография</label>
+                            <textarea class="form-control in-teacher-bio" data-idx="${index}" rows="3">${t.bio}</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <h4 style="font-size:0.9rem; color:var(--color-primary); margin-bottom:10px"><i data-lucide="volume-2" style="width:16px; height:16px; vertical-align:middle"></i> Аудиовизитка (Симуляция субтитров)</h4>
+                            <label>Формат: [секунда] Текст реплики (по одной строке)</label>
+                            <textarea class="form-control in-teacher-subs" data-idx="${index}" rows="6" style="font-family:monospace; font-size:0.85rem">${subsLines}</textarea>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Rates
+            const ratesContainer = document.getElementById('ratesListContainer');
+            ratesContainer.innerHTML = '';
+            contentData.rates.forEach((rate, index) => {
+                ratesContainer.innerHTML += `
+                    <div class="cms-card">
+                        <h3 class="cms-card-title"><i data-lucide="credit-card"></i> Тариф ${index + 1}: ${rate.name}</h3>
+                        <div class="grid-3">
+                            <div class="form-group">
+                                <label>Название тарифа</label>
+                                <input type="text" class="form-control in-rate-name" data-idx="${index}" value="${rate.name}">
+                            </div>
+                            <div class="form-group">
+                                <label>Цена в месяц (руб.)</label>
+                                <input type="number" class="form-control in-rate-price-mo" data-idx="${index}" value="${rate.prices.monthly}">
+                            </div>
+                            <div class="form-group">
+                                <label>Цена в год в месяц (руб.)</label>
+                                <input type="number" class="form-control in-rate-price-yr" data-idx="${index}" value="${rate.prices.yearly}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Краткое описание тарифа</label>
+                            <input type="text" class="form-control in-rate-desc" data-idx="${index}" value="${rate.desc}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Свойства/Преимущества тарифа (Отметьте включенные опции)</label>
+                            <div id="rate-feats-list-${rate.id}">
+                                ${rate.features.map((feat, fIdx) => `
+                                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px">
+                                        <input type="checkbox" class="in-rate-feat-chk" data-rate-idx="${index}" data-feat-idx="${fIdx}" ${feat.enabled ? 'checked' : ''}>
+                                        <input type="text" class="form-control in-rate-feat-text" data-rate-idx="${index}" data-feat-idx="${fIdx}" value="${feat.text}" style="padding:6px 12px; font-size:0.85rem">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0">
+                            <label style="display:inline-flex; align-items:center; gap:8px; text-transform:none">
+                                <input type="checkbox" class="in-rate-featured" data-idx="${index}" ${rate.featured ? 'checked' : ''}>
+                                Выделить тариф как популярный
+                            </label>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Schedule
+            const scheduleContainer = document.getElementById('scheduleListContainer');
+            scheduleContainer.innerHTML = '';
+            contentData.schedule.forEach((day, dIdx) => {
+                scheduleContainer.innerHTML += `
+                    <div class="schedule-day-box" id="day-box-${dIdx}">
+                        <div style="display:flex; justify-content:space-between; align-items:center">
+                            <h4 style="font-size:1rem; color:var(--color-primary)">${day.name}</h4>
+                            <div style="display:flex; gap:15px; align-items:center">
+                                <div class="form-group" style="margin-bottom:0; display:inline-flex; align-items:center; gap:8px">
+                                    <label style="margin-bottom:0; text-transform:none">Дата:</label>
+                                    <input type="text" class="form-control in-day-date" data-idx="${dIdx}" value="${day.date}" style="padding:6px 12px; width:130px; font-size:0.85rem">
+                                </div>
+                                <label style="display:inline-flex; align-items:center; gap:5px; font-size:0.85rem; cursor:pointer">
+                                    <input type="checkbox" class="in-day-weekend" data-idx="${dIdx}" ${day.is_weekend ? 'checked' : ''}>
+                                    Выходной
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-slots-editor" id="slots-container-${dIdx}">
+                            ${day.slots.map((slot, sIdx) => `
+                                <div class="slot-editor-pill ${slot.booked ? 'booked' : ''}">
+                                    <span>${slot.time}</span>
+                                    <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; margin-bottom:0; cursor:pointer">
+                                        <input type="checkbox" class="in-slot-booked" data-day-idx="${dIdx}" data-slot-idx="${sIdx}" ${slot.booked ? 'checked' : ''} onchange="toggleSlotBookedUI(this)">
+                                        Занято
+                                    </label>
+                                    <button type="button" onclick="removeSlot(${dIdx}, ${sIdx})" title="Удалить слот">
+                                        <i data-lucide="x" style="width:14px; height:14px"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                            <button type="button" class="btn-add-slot" onclick="addSlotPrompt(${dIdx})">+ Добавить время</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // UPLOADS
+        // --------------------------------------------------------------------------
+        async function uploadAsset(inputEl, teacherKey, type) {
+            const file = inputEl.files[0];
+            if (!file) return;
+
+            const statusEl = document.getElementById(`upload-status-${type}-${teacherKey}`);
+            statusEl.innerText = "Загрузка...";
+            statusEl.style.color = "var(--color-text-secondary)";
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const res = await fetch('api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` },
+                    body: formData
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    statusEl.innerText = "Файл загружен!";
+                    statusEl.style.color = "var(--color-success)";
+                    
+                    // Update preview and hidden path input
+                    const previewImg = document.getElementById(`img-preview-${teacherKey}`);
+                    if (previewImg) {
+                        previewImg.src = data.url;
+                    }
+                    
+                    // Find matching teacher index to update local window state
+                    const teacherIdx = contentData.teachers.findIndex(t => t.key === teacherKey);
+                    if (teacherIdx !== -1) {
+                        document.querySelector(`.in-teacher-image[data-idx="${teacherIdx}"]`).value = data.url;
+                    }
+                    
+                    showToast('Файл успешно загружен', 'success');
+                } else {
+                    statusEl.innerText = "Ошибка загрузки";
+                    statusEl.style.color = "var(--color-error)";
+                    showToast('Не удалось загрузить файл', 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                statusEl.innerText = "Ошибка сети";
+                statusEl.style.color = "var(--color-error)";
+                showToast('Ошибка при загрузке', 'error');
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // SCHEDULE HELPERS
+        // --------------------------------------------------------------------------
+        function toggleSlotBookedUI(chkBox) {
+            const pill = chkBox.closest('.slot-editor-pill');
+            if (chkBox.checked) {
+                pill.classList.add('booked');
+            } else {
+                pill.classList.remove('booked');
+            }
+        }
+
+        function removeSlot(dIdx, sIdx) {
+            contentData.schedule[dIdx].slots.splice(sIdx, 1);
+            populateForm();
+            showToast('Слот удален. Не забудьте сохранить изменения.', 'success');
+        }
+
+        function addSlotPrompt(dIdx) {
+            const time = prompt("Введите время в формате ЧЧ:ММ (например, 14:30):");
+            if (!time) return;
+            
+            // basic HH:MM validation
+            const match = time.match(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/);
+            if (!match) {
+                alert("Неверный формат времени. Введите в формате ЧЧ:ММ.");
+                return;
+            }
+
+            contentData.schedule[dIdx].slots.push({
+                time: time,
+                booked: false
+            });
+            
+            // Sort slots chronologically
+            contentData.schedule[dIdx].slots.sort((a, b) => a.time.localeCompare(b.time));
+            
+            populateForm();
+            showToast('Слот добавлен. Не забудьте сохранить изменения.', 'success');
+        }
+
+        // --------------------------------------------------------------------------
+        // SAVE & PUBLISH
+        // --------------------------------------------------------------------------
+        async function saveContent() {
+            if (!contentData) return;
+
+            const btnSave = document.querySelector('.btn-save-floating');
+            btnSave.disabled = true;
+            btnSave.innerHTML = '<i data-lucide="loader-2" class="icon-spin"></i> <span>Публикация...</span>';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            // Reconstruct JSON payload from input values
+            
+            // General
+            contentData.page_title = document.getElementById('inPageTitle').value;
+            contentData.meta_description = document.getElementById('inMetaDesc').value;
+            contentData.hero.badge = document.getElementById('inHeroBadge').value;
+            contentData.hero.title = document.getElementById('inHeroTitle').value;
+            contentData.hero.description = document.getElementById('inHeroDesc').value;
+
+            // Stats
+            document.querySelectorAll('.in-stat-val').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.hero.stats[idx].value = el.value;
+            });
+            document.querySelectorAll('.in-stat-label').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.hero.stats[idx].label = el.value;
+            });
+
+            // Programs
+            document.querySelectorAll('.in-prog-title').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.programs[idx].title = el.value;
+            });
+            document.querySelectorAll('.in-prog-level').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.programs[idx].level = el.value;
+            });
+            document.querySelectorAll('.in-prog-desc').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.programs[idx].description = el.value;
+            });
+            document.querySelectorAll('.in-prog-feats').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.programs[idx].features = el.value.split('\n').map(s => s.trim()).filter(s => s);
+            });
+            document.querySelectorAll('.in-prog-featured').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.programs[idx].featured = el.checked;
+            });
+
+            // Teachers
+            document.querySelectorAll('.in-teacher-name').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.teachers[idx].name = el.value;
+            });
+            document.querySelectorAll('.in-teacher-state').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.teachers[idx].state = el.value;
+            });
+            document.querySelectorAll('.in-teacher-tags').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.teachers[idx].tags = el.value.split(',').map(s => s.trim()).filter(s => s);
+            });
+            document.querySelectorAll('.in-teacher-bio').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.teachers[idx].bio = el.value;
+            });
+            document.querySelectorAll('.in-teacher-image').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.teachers[idx].image = el.value;
+            });
+            document.querySelectorAll('.in-teacher-subs').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                const rawLines = el.value.split('\n');
+                
+                // Parse lines formatted as: [time] Text
+                const parsedSubs = [];
+                rawLines.forEach(line => {
+                    const match = line.match(/^\[(\d+)\]\s*(.*)$/);
+                    if (match) {
+                        parsedSubs.push({
+                            time: parseInt(match[1]),
+                            text: match[2].trim()
+                        });
+                    }
+                });
+                
+                // If parsing succeeded, update list
+                if (parsedSubs.length > 0) {
+                    contentData.teachers[idx].subtitles = parsedSubs;
+                }
+            });
+
+            // Rates
+            document.querySelectorAll('.in-rate-name').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.rates[idx].name = el.value;
+            });
+            document.querySelectorAll('.in-rate-desc').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.rates[idx].desc = el.value;
+            });
+            document.querySelectorAll('.in-rate-price-mo').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.rates[idx].prices.monthly = parseInt(el.value);
+            });
+            document.querySelectorAll('.in-rate-price-yr').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.rates[idx].prices.yearly = parseInt(el.value);
+            });
+            document.querySelectorAll('.in-rate-featured').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.rates[idx].featured = el.checked;
+            });
+            
+            // Checkbox and texts for rate features
+            document.querySelectorAll('.in-rate-feat-chk').forEach(el => {
+                const rIdx = parseInt(el.getAttribute('data-rate-idx'));
+                const fIdx = parseInt(el.getAttribute('data-feat-idx'));
+                contentData.rates[rIdx].features[fIdx].enabled = el.checked;
+            });
+            document.querySelectorAll('.in-rate-feat-text').forEach(el => {
+                const rIdx = parseInt(el.getAttribute('data-rate-idx'));
+                const fIdx = parseInt(el.getAttribute('data-feat-idx'));
+                contentData.rates[rIdx].features[fIdx].text = el.value;
+            });
+
+            // Schedule
+            document.querySelectorAll('.in-day-date').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.schedule[idx].date = el.value;
+            });
+            document.querySelectorAll('.in-day-weekend').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-idx'));
+                contentData.schedule[idx].is_weekend = el.checked;
+            });
+            document.querySelectorAll('.in-slot-booked').forEach(el => {
+                const dIdx = parseInt(el.getAttribute('data-day-idx'));
+                const sIdx = parseInt(el.getAttribute('data-slot-idx'));
+                if (contentData.schedule[dIdx].slots[sIdx]) {
+                    contentData.schedule[dIdx].slots[sIdx].booked = el.checked;
+                }
+            });
+
+            // Send payload to backend API
+            try {
+                const res = await fetch('api/content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(contentData)
+                });
+
+                if (res.ok) {
+                    showToast('Страница успешно обновлена и перекомпилирована!', 'success');
+                } else {
+                    const err = await res.json();
+                    showToast(`Ошибка сохранения: ${err.message}`, 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Ошибка подключения к серверу', 'error');
+            } finally {
+                btnSave.disabled = false;
+                btnSave.innerHTML = '<i data-lucide="check"></i> <span>Опубликовать изменения</span>';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // TOAST NOTIFICATIONS
+        // --------------------------------------------------------------------------
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('cmsToast');
+            const text = document.getElementById('toastText');
+            const icon = document.getElementById('toastIcon');
+
+            text.innerText = message;
+            
+            toast.className = `toast show ${type}`;
+            icon.setAttribute('data-lucide', type === 'success' ? 'check-circle' : 'alert-triangle');
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
