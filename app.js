@@ -541,10 +541,26 @@ function handleFormSubmit(e) {
     // Show Modal
     modal.style.display = 'flex';
     
+    // Send data to backend
+    fetch('/land-lang/api/booking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            contact: contact,
+            level: level,
+            date: slotDate || 'Не указана',
+            time: slotTime || 'Не указано'
+        })
+    }).catch(err => console.error('Error sending booking to backend:', err));
+
     // Clear fields
     form.reset();
     clearSelectedSlot(null);
 }
+
 
 function closeSuccessModal() {
     document.getElementById('successModal').style.display = 'none';

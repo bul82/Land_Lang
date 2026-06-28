@@ -3,92 +3,1302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liberty Academy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Liberty Academy | Английский для переезда, учебы и работы</title>
+    <meta name="description" content="Языковая и культурная подготовка к переезду в США: экзамены, интервью, бытовая адаптация и уверенное общение.">
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=2.3">
+    <!-- Lucide Icons -->
+    <script src="assets/lucide.min.js?v=2.1" defer></script>
 </head>
 <body>
-    <header class="hero">
-        <h1 class="hero-title">Подготовься к TOEFL и IELTS</h1>
-        <p class="hero-subtitle">Курсы, которые помогут сдать экзамены и переехать в США за 6 месяцев.</p>
-        <button class="cta-button">Узнать стоимость за 1 минуту</button>
+
+    <!-- Sticky Glassmorphic Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">LIBERTY</span><span class="logo-sub">ACADEMY</span>
+                <div class="logo-indicator"></div>
+            </a>
+            <nav class="nav-menu">
+                <a href="#languages" class="nav-link">Программы</a>
+                <a href="#test" class="nav-link">Тест на уровень</a>
+                <a href="#teachers" class="nav-link">Преподаватели</a>
+                <a href="#schedule" class="nav-link">Расписание</a>
+                <a href="#formats" class="nav-link">Форматы</a>
+                <a href="#rates" class="nav-link">Тарифы</a>
+            </nav>
+            <div class="header-actions">
+                <a href="#trial" class="btn btn-primary header-cta">Пробный урок</a>
+                <button class="btn btn-outline btn-cabinet" onclick="toggleCabinetModal()">
+                    <i data-lucide="user" class="icon-small"></i>
+                    <span>Личный кабинет</span>
+                </button>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle menu">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
     </header>
 
-    <section class="test">
-        <h2>Тест на уровень языка</h2>
-        <p>Пройди интерактивный тест и узнай свой уровень английского за 5 минут.</p>
-        <ul>
-            <li>4 простых вопроса</li>
-            <li>Результат сразу после теста</li>
-        </ul>
-        <button id="start-quiz">Начать тест</button>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="mobile-drawer-content">
+            <nav class="mobile-nav">
+                <a href="#languages" class="mobile-link" onclick="closeMobileMenu()">Программы</a>
+                <a href="#test" class="mobile-link" onclick="closeMobileMenu()">Тест на уровень</a>
+                <a href="#teachers" class="mobile-link" onclick="closeMobileMenu()">Преподаватели</a>
+                <a href="#schedule" class="mobile-link" onclick="closeMobileMenu()">Расписание</a>
+                <a href="#formats" class="mobile-link" onclick="closeMobileMenu()">Форматы</a>
+                <a href="#rates" class="mobile-link" onclick="closeMobileMenu()">Тарифы</a>
+                <a href="#trial" class="mobile-link mobile-cta" onclick="closeMobileMenu()">Пробный урок</a>
+                <button class="btn btn-outline w-full mt-4" onclick="closeMobileMenu(); toggleCabinetModal()">
+                    <i data-lucide="user" class="icon-small"></i>
+                    <span>Личный кабинет</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-relocation">
+                    <i data-lucide="plane-takeoff" class="icon-gold"></i>
+                    <span>Английский для переезда и работы</span>
+                </div>
+                <h1 class="hero-title">
+                    Английский для США: говорите уверенно в учебе, работе и быту
+                </h1>
+                <p class="hero-description">
+                    Подготовка к TOEFL/IELTS, интервью, визовым вопросам и первым месяцам адаптации. Программа строится под цель, уровень и реальные ситуации.
+                </p>
+                <div class="hero-actions">
+                    <a href="#test" class="btn btn-primary btn-glow">Пройти тест на уровень</a>
+                    <a href="#trial" class="btn btn-secondary">Записаться на пробный</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">4 трека</span>
+                        <span class="stat-label">под разные цели</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-wrapper">
+                    <img src="assets/hero_learning.png" alt="Студент Liberty Academy" class="hero-image">
+                    <div class="floating-badge badge-1">
+                        <i data-lucide="check-circle" class="icon-cyan"></i>
+                        <span>Экзамены без хаоса</span>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i data-lucide="shield-check" class="icon-gold"></i>
+                        <span>Интервью и документы</span>
+                    </div>
+                    <div class="floating-badge badge-3">
+                        <i data-lucide="sparkles" class="icon-pink"></i>
+                        <span>Живая речь</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="pricing">
-        <h2>Тарифы на курсы</h2>
-        <p>Выбери подходящий тариф и начни обучение.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Курс</th>
-                    <th>Длительность</th>
-                    <th>Цена</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Базовый курс TOEFL</td>
-                    <td>3 месяца</td>
-                    <td>30,000 ₽</td>
-                </tr>
-                <tr>
-                    <td>Продвинутый курс IELTS</td>
-                    <td>4 месяца</td>
-                    <td>40,000 ₽</td>
-                </tr>
-                <tr>
-                    <td>Интенсивный курс TOEFL</td>
-                    <td>1.5 месяца</td>
-                    <td>50,000 ₽</td>
-                </tr>
-                <tr>
-                    <td>Подготовка к экзаменам (комбо)</td>
-                    <td>6 месяцев</td>
-                    <td>70,000 ₽</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Languages & Levels Section -->
+    <section class="section levels-section" id="courses">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Программы под конкретную цель</h2>
+                <p class="section-subtitle">Сфокусированное обучение: разбираем только те сценарии, которые пригодятся вам в реальной жизни.</p>
+            </div>
+            <div class="levels-grid">
+                <!-- Level Card 1 -->
+                <div class="level-card" data-level="A2-B1">
+                    <span class="course-badge adults">Для взрослых</span>
+                    <div class="level-badge">A2 - B1</div>
+                    <h3 class="level-card-title">Бытовая адаптация</h3>
+                    <p class="level-card-text">
+                        Уверенное общение с арендодателем, врачом, банком, школой и коммунальными службами. Разбираем сценарии первых недель.
+                    </p>
+                    <ul class="level-features">
+                        <li><i data-lucide="check" class="icon-green"></i> Разговоры в магазинах и службах</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Заполнение бытовых документов</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Снятие языкового барьера</li>
+                    </ul>
+                    
+                    <details class="syllabus-accordion">
+                        <summary>Подробная программа курса <span>Показать</span></summary>
+                        <div class="syllabus-content">
+                            <div class="syllabus-module">
+                                <h4>Модуль 1: Повседневное общение</h4>
+                                <p>Аренда жилья, контракты, заказ услуг, покупки.</p>
+                            </div>
+                            <div class="syllabus-module">
+                                <h4>Модуль 2: Официальные визиты</h4>
+                                <p>Открытие счетов, визиты к врачу, заполнение бланков.</p>
+                            </div>
+                            <div class="syllabus-module-extra">
+                                <strong>Задание:</strong> Звонок в американскую техподдержку с разбором ошибок.
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <a href="#trial" class="btn btn-text">Выбрать этот трек <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <!-- Level Card 2 -->
+                <div class="level-card featured" data-level="B2">
+                    <div class="card-glow"></div>
+                    <span class="course-badge career">Для учебы и визы</span>
+                    <div class="level-badge gold">B2 (Upper)</div>
+                    <h3 class="level-card-title">Экзамены и виза</h3>
+                    <p class="level-card-text">
+                        Интенсивная подготовка к TOEFL/IELTS, эссе, разговорная практика и спокойные ответы на вопросы консула.
+                    </p>
+                    <ul class="level-features">
+                        <li><i data-lucide="check" class="icon-gold"></i> TOEFL / IELTS разбор лайфхаков</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> Симуляция интервью в посольстве</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> Написание академических эссе</li>
+                    </ul>
+                    
+                    <details class="syllabus-accordion">
+                        <summary>Подробная программа курса <span>Показать</span></summary>
+                        <div class="syllabus-content">
+                            <div class="syllabus-module">
+                                <h4>Модуль 1: Логика тестов</h4>
+                                <p>Написание эссе без клише, разбор частей Listening/Reading.</p>
+                            </div>
+                            <div class="syllabus-module">
+                                <h4>Модуль 2: Собеседование</h4>
+                                <p>Вопросы консула, преодоление волнения, симуляции.</p>
+                            </div>
+                            <div class="syllabus-module-extra">
+                                <strong>Задание:</strong> Пробный устный тест с оценкой произношения.
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <a href="#trial" class="btn btn-text text-gold">Выбрать этот трек <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <!-- Level Card 3 -->
+                <div class="level-card" data-level="B2-C1">
+                    <span class="course-badge career">Для карьеры</span>
+                    <div class="level-badge">B2 - C1</div>
+                    <h3 class="level-card-title">Работа и карьера</h3>
+                    <p class="level-card-text">
+                        Резюме по стандартам США, подготовка к поведенческому интервью, уверенная речь на рабочих созвонах и презентациях.
+                    </p>
+                    <ul class="level-features">
+                        <li><i data-lucide="check" class="icon-green"></i> Подготовка к интервью (STAR метод)</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Деловая переписка и презентации</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Бизнес-этикет в США</li>
+                    </ul>
+                    
+                    <details class="syllabus-accordion">
+                        <summary>Подробная программа курса <span>Показать</span></summary>
+                        <div class="syllabus-content">
+                            <div class="syllabus-module">
+                                <h4>Модуль 1: Самопрезентация</h4>
+                                <p>Резюме стандарта США, Elevator Pitch, профиль LinkedIn.</p>
+                            </div>
+                            <div class="syllabus-module">
+                                <h4>Модуль 2: Метод STAR</h4>
+                                <p>Формулирование кейсов, ответы на каверзные вопросы HR.</p>
+                            </div>
+                            <div class="syllabus-module-extra">
+                                <strong>Задание:</strong> Запись STAR-ответа с оценкой от американского HR.
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <a href="#trial" class="btn btn-text">Выбрать этот трек <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <!-- Level Card 4 -->
+                <div class="level-card" data-level="C1-C2">
+                    <span class="course-badge adults">Для адаптации</span>
+                    <div class="level-badge">C1 - C2</div>
+                    <h3 class="level-card-title">Снижение акцента</h3>
+                    <p class="level-card-text">
+                        Работа над интонацией, связующими звуками и культурным контекстом (юмор, идиомы) для свободного общения с носителями.
+                    </p>
+                    <ul class="level-features">
+                        <li><i data-lucide="check" class="icon-green"></i> General American Accent</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Американские идиомы и сленг</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Свободные дискуссии на сложные темы</li>
+                    </ul>
+                    
+                    <details class="syllabus-accordion">
+                        <summary>Подробная программа курса <span>Показать</span></summary>
+                        <div class="syllabus-content">
+                            <div class="syllabus-module">
+                                <h4>Модуль 1: Американская фоника</h4>
+                                <p>Редукция гласных, интонационные паттерны, связующие звуки.</p>
+                            </div>
+                            <div class="syllabus-module">
+                                <h4>Модуль 2: Культурный контекст</h4>
+                                <p>Светские беседы, идиомы, юмор, мемы.</p>
+                            </div>
+                            <div class="syllabus-module-extra">
+                                <strong>Задание:</strong> Фонетический анализ двухминутного монолога.
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <a href="#trial" class="btn btn-text">Выбрать этот трек <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <!-- Level Card 5 (Kids & Teens) -->
+                <div class="level-card" data-level="A1-B2">
+                    <span class="course-badge kids">Для детей и подростков</span>
+                    <div class="level-badge">A1 - B2</div>
+                    <h3 class="level-card-title">Английский для детей</h3>
+                    <p class="level-card-text">
+                        Игровые интерактивные уроки для мягкой интеграции ребенка в англоязычную среду и американскую школьную программу.
+                    </p>
+                    <ul class="level-features">
+                        <li><i data-lucide="check" class="icon-green"></i> Разговорные игры и игры на внимание</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Подготовка к терминам школьной программы</li>
+                        <li><i data-lucide="check" class="icon-green"></i> Помощь с преодолением барьера общения</li>
+                    </ul>
+                    
+                    <details class="syllabus-accordion">
+                        <summary>Подробная программа курса <span>Показать</span></summary>
+                        <div class="syllabus-content">
+                            <div class="syllabus-module">
+                                <h4>Модуль 1: Школьная жизнь и дружба</h4>
+                                <p>Общение со сверстниками, обсуждение хобби, школьные предметы.</p>
+                            </div>
+                            <div class="syllabus-module">
+                                <h4>Модуль 2: Лексический старт</h4>
+                                <p>Базовые термины по математике, географии, естествознанию.</p>
+                            </div>
+                            <div class="syllabus-module-extra">
+                                <strong>Задание:</strong> Подготовка мини-презентации о своем увлечении.
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <a href="#trial" class="btn btn-text">Выбрать этот трек <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="personal-cabinet">
-        <h2>Личный кабинет</h2>
-        <p>Все материалы и результаты экзаменов в одном месте.</p>
-        <ul>
-            <li>Доступ к урокам</li>
-            <li>Отслеживание прогресса</li>
-        </ul>
+    <!-- Interactive Level Test Section -->
+    <section class="section test-section section-dark" id="test">
+        <div class="section-glow-left"></div>
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Быстрый интерактивный тест</h2>
+                <p class="section-subtitle">Определите свой уровень готовности к релокации и получите рекомендации по обучению</p>
+            </div>
+            
+            <div class="test-container glass-card">
+                <!-- Test Wizard Progress Bar -->
+                <div class="test-progress-wrapper">
+                    <div class="test-progress-bar" id="testProgressBar" style="width: 20%;"></div>
+                    <div class="test-progress-text" id="testProgressText">Вопрос 1 из 5</div>
+                </div>
+
+                <!-- Test Wizard Content -->
+                <div class="test-quiz-body" id="quizBody">
+                    <!-- Question Step 1 -->
+                    <div class="quiz-step active" data-step="1">
+                        <h3 class="quiz-question">1. Вы планируете арендовать квартиру в Нью-Йорке. Какую фразу вы скажете агенту, чтобы спросить о включенных коммунальных услугах?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="a">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"Are the bills here?"</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="b">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"Are utilities included in the monthly rent?"</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="c">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"What is the cost of water and warm?" (уровень: 'моя твоя понимать, но бойлер отключат')</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question Step 2 -->
+                    <div class="quiz-step" data-step="2">
+                        <h3 class="quiz-question">2. На собеседовании в США вас просят: "Tell me about a time you dropped the ball". Что от вас хотят услышать?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="a">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Историю о том, как вы играли в бейсбол на корпоративе и упустили мяч.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="b">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Пример вашей крупной ошибки или провала в работе и то, как вы с этим справились.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="c">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Рассказ о ваших спортивных увлечениях вне работы.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question Step 3 -->
+                    <div class="quiz-step" data-step="3">
+                        <h3 class="quiz-question">3. Выберите правильное продолжение американской идиомы, означающей «приступить к делу/начать серьезно работать»: "Let's get down to..."</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="a">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">...the work</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="b">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">...business</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="c">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">...brass tacks</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question Step 4 -->
+                    <div class="quiz-step" data-step="4">
+                        <h3 class="quiz-question">4. Выберите корректное предложение с использованием сослагательного наклонения (Subjunctive Mood), часто используемого в официальных письмах США:</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="a">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"It is crucial that he submits the report on time."</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="b">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"It is crucial that he submit the report on time."</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="c">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">"It is crucial that he will submit the report on time."</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question Step 5 -->
+                    <div class="quiz-step" data-step="5">
+                        <h3 class="quiz-question">5. Ваш американский коллега говорит: "I'm swamped today, let's touch base next week". Что это значит?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="a">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Он сегодня застрял в болоте и просит вас о помощи.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="b">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Он сегодня безумно занят, предлагает связаться на следующей неделе.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="c">
+                                <span class="option-indicator"></span>
+                                <span class="option-text">Он хочет поехать на военную базу на выходных.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="test-controls">
+                    <button class="btn btn-secondary btn-nav-quiz" id="prevQuizBtn" disabled>
+                        <i data-lucide="arrow-left" class="icon-small"></i> Назад
+                    </button>
+                    <button class="btn btn-primary btn-nav-quiz" id="nextQuizBtn">
+                        Далее <i data-lucide="arrow-right" class="icon-small"></i>
+                    </button>
+                </div>
+
+                <!-- Result Screen (Hidden initially) -->
+                <div class="test-result-screen" id="testResultScreen" style="display: none;">
+                    <div class="result-badge-icon">
+                        <i data-lucide="award" class="icon-gold-large"></i>
+                    </div>
+                    <h3 class="result-title">Тест пройден.</h3>
+                    <div class="result-score-container">
+                        <div class="result-score-circle">
+                            <div class="score-number" id="quizScoreNumber">B2</div>
+                            <div class="score-label">Ваш уровень</div>
+                        </div>
+                        <div class="result-details">
+                            <p class="result-description" id="quizResultDescription">
+                                Отличный результат! Вы владеете базой и ориентируетесь в повседневных ситуациях. Дальше стоит усилить рабочую лексику, интервью, произношение и уверенность в живом разговоре.
+                            </p>
+                            <div class="recommended-track-badge">
+                                <span class="track-label">Рекомендуемая программа:</span>
+                                <strong class="track-val" id="quizRecommendedTrack">Работа и карьера</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary btn-glow" onclick="scrollToSection('trial')">Записаться на разбор результатов</button>
+                        <button class="btn btn-outline" onclick="resetQuiz()">Пройти заново</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="feedback">
-        <h2>Обратная связь</h2>
-        <p>Оставь заявку и получи консультацию.</p>
-        <form id="feedback-form">
-            <label for="name">Имя:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="phone">Телефон:</label>
-            <input type="tel" id="phone" name="phone" required>
-            <label for="date">Дата:</label>
-            <input type="date" id="date" name="date" required>
-            <label for="time">Время:</label>
-            <input type="time" id="time" name="time" required>
-            <label>
-                <input type="checkbox" required>
-                Согласен на обработку персональных данных <a href="privacy.html">(политика конфиденциальности)</a>
-            </label>
-            <button type="submit">Отправить</button>
-        </form>
+    <!-- Teachers Section -->
+    <section class="section teachers-section" id="teachers">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Наши преподаватели</h2>
+                <p class="section-subtitle">Команда экспертов из США, которые помогут вам звучать уверенно и естественно</p>
+            </div>
+            
+            <div class="teachers-grid">
+                <!-- Teacher Card 1 -->
+                <div class="teacher-card glass-card">
+                    <div class="teacher-image-wrapper">
+                        <img src="assets/teacher_john.png" loading="lazy" decoding="async" alt="Teacher John" class="teacher-image">
+                        <div class="teacher-accent-line"></div>
+                        <button class="btn-play-audio" onclick="playTeacherAudio(this, 'john')">
+                            <i data-lucide="play" class="play-icon"></i>
+                            <i data-lucide="pause" class="pause-icon" style="display:none;"></i>
+                            <span>Слушать аудиовизитку</span>
+                        </button>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-meta">
+                            <h3 class="teacher-name">John Davis</h3>
+                            <span class="teacher-state">California, USA</span>
+                        </div>
+                        <p class="teacher-bio">
+                            Специалист по снижению акцента (Accent Reduction) и подготовке к академическим тестам TOEFL/IELTS. 8 лет опыта работы в UC Berkeley.
+                        </p>
+                        <div class="teacher-tags">
+                            <span class="tag">TOEFL Spec</span>
+                            <span class="tag">Accent Reduction</span>
+                            <span class="tag">Columbia M.A.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 2 -->
+                <div class="teacher-card glass-card">
+                    <div class="teacher-image-wrapper">
+                        <img src="assets/teacher_sarah.png" loading="lazy" decoding="async" alt="Teacher Sarah" class="teacher-image">
+                        <div class="teacher-accent-line"></div>
+                        <button class="btn-play-audio" onclick="playTeacherAudio(this, 'sarah')">
+                            <i data-lucide="play" class="play-icon"></i>
+                            <i data-lucide="pause" class="pause-icon" style="display:none;"></i>
+                            <span>Слушать аудиовизитку</span>
+                        </button>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-meta">
+                            <h3 class="teacher-name">Sarah Miller</h3>
+                            <span class="teacher-state">New York, USA</span>
+                        </div>
+                        <p class="teacher-bio">
+                            Коуч по разговорному английскому и культурной адаптации. Поможет освоить живой американский сленг, юмор и преодолеть стеснение при общении.
+                        </p>
+                        <div class="teacher-tags">
+                            <span class="tag">Speaking Club</span>
+                            <span class="tag">US Culture</span>
+                            <span class="tag">NYU Alumna</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Card 3 -->
+                <div class="teacher-card glass-card">
+                    <div class="teacher-image-wrapper">
+                        <img src="assets/teacher_david.png" loading="lazy" decoding="async" alt="Teacher David" class="teacher-image">
+                        <div class="teacher-accent-line"></div>
+                        <button class="btn-play-audio" onclick="playTeacherAudio(this, 'david')">
+                            <i data-lucide="play" class="play-icon"></i>
+                            <i data-lucide="pause" class="pause-icon" style="display:none;"></i>
+                            <span>Слушать аудиовизитку</span>
+                        </button>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-meta">
+                            <h3 class="teacher-name">David King</h3>
+                            <span class="teacher-state">Texas, USA</span>
+                        </div>
+                        <p class="teacher-bio">
+                            Эксперт по Business English и подготовке к интервью. Помогает структурировать опыт, отвечать на behavioral questions и уверенно вести рабочие созвоны.
+                        </p>
+                        <div class="teacher-tags">
+                            <span class="tag">Interview Prep</span>
+                            <span class="tag">Business English</span>
+                            <span class="tag">UT Austin MBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Player Simulator Display -->
+            <div class="audio-simulator-bar glass-card" id="audioSimulator">
+                <div class="audio-sim-wave">
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                </div>
+                <div class="audio-sim-content">
+                    <div class="audio-sim-teacher" id="audioTeacherName">John Davis ( California )</div>
+                    <div class="audio-sim-subtitles" id="audioSubtitles">"Hello! Welcome to Liberty Academy. Let's make your American Dream come true!"</div>
+                </div>
+                <button class="btn-close-audio" onclick="stopTeacherAudio()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+        </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- Schedule Section -->
+    <section class="section schedule-section section-dark" id="schedule">
+        <div class="section-glow-right"></div>
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Интерактивное расписание</h2>
+                <p class="section-subtitle">Выберите удобное время для вводной сессии. Расписание автоматически подстраивается под выбранный часовой пояс.</p>
+            </div>
+            
+            <div class="schedule-container glass-card">
+                <!-- Timezone Selector Header -->
+                <div class="schedule-header">
+                    <div class="timezone-picker-label">
+                        <i data-lucide="globe" class="icon-cyan"></i>
+                        <span>Ваш часовой пояс:</span>
+                    </div>
+                    <div class="timezone-buttons">
+                        <button class="tz-btn active" data-tz="MSK" onclick="changeTimezone('MSK')">Москва (UTC+3)</button>
+                        <button class="tz-btn" data-tz="EST" onclick="changeTimezone('EST')">Нью-Йорк (EST, UTC-4)</button>
+                        <button class="tz-btn" data-tz="PST" onclick="changeTimezone('PST')">Сан-Франциско (PST, UTC-7)</button>
+                    </div>
+                </div>
+
+                <!-- Schedule Grid Calendar -->
+                <div class="schedule-calendar-grid">
+                    <!-- Days of the week -->
+                    <div class="calendar-day-col" data-day="Mon">
+                        <div class="day-header">Пн <span class="day-date">22 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn" data-time="10:00" onclick="selectSlot(this, 'Пн, 22 июня', '10:00')">10:00</button>
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="15:00" onclick="selectSlot(this, 'Пн, 22 июня', '15:00')">15:00</button>
+                            <button class="slot-btn" data-time="19:00" onclick="selectSlot(this, 'Пн, 22 июня', '19:00')">19:00</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col" data-day="Tue">
+                        <div class="day-header">Вт <span class="day-date">23 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="12:00" onclick="selectSlot(this, 'Вт, 23 июня', '12:00')">12:00</button>
+                            <button class="slot-btn" data-time="16:00" onclick="selectSlot(this, 'Вт, 23 июня', '16:00')">16:00</button>
+                            <button class="slot-btn" data-time="20:00" onclick="selectSlot(this, 'Вт, 23 июня', '20:00')">20:00</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col" data-day="Wed">
+                        <div class="day-header">Ср <span class="day-date">24 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn" data-time="09:00" onclick="selectSlot(this, 'Ср, 24 июня', '09:00')">09:00</button>
+                            <button class="slot-btn" data-time="14:00" onclick="selectSlot(this, 'Ср, 24 июня', '14:00')">14:00</button>
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="18:30" onclick="selectSlot(this, 'Ср, 24 июня', '18:30')">18:30</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col" data-day="Thu">
+                        <div class="day-header">Чт <span class="day-date">25 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn" data-time="11:00" onclick="selectSlot(this, 'Чт, 25 июня', '11:00')">11:00</button>
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="17:00" onclick="selectSlot(this, 'Чт, 25 июня', '17:00')">17:00</button>
+                            <button class="slot-btn" data-time="21:00" onclick="selectSlot(this, 'Чт, 25 июня', '21:00')">21:00</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col" data-day="Fri">
+                        <div class="day-header">Пт <span class="day-date">26 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn" data-time="10:00" onclick="selectSlot(this, 'Пт, 26 июня', '10:00')">10:00</button>
+                            <button class="slot-btn" data-time="13:00" onclick="selectSlot(this, 'Пт, 26 июня', '13:00')">13:00</button>
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="19:00" onclick="selectSlot(this, 'Пт, 26 июня', '19:00')">19:00</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col weekend" data-day="Sat">
+                        <div class="day-header">Сб <span class="day-date">27 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn" data-time="12:00" onclick="selectSlot(this, 'Сб, 27 июня', '12:00')">12:00</button>
+                            <button class="slot-btn" data-time="15:00" onclick="selectSlot(this, 'Сб, 27 июня', '15:00')">15:00</button>
+                            <button class="slot-btn" data-time="18:00" onclick="selectSlot(this, 'Сб, 27 июня', '18:00')">18:00</button>
+                            <button class="slot-btn booked">Занято</button>
+                        </div>
+                    </div>
+                    <div class="calendar-day-col weekend" data-day="Sun">
+                        <div class="day-header">Вс <span class="day-date">28 июня</span></div>
+                        <div class="slots-list">
+                            <button class="slot-btn booked">Занято</button>
+                            <button class="slot-btn" data-time="13:00" onclick="selectSlot(this, 'Вс, 28 июня', '13:00')">13:00</button>
+                            <button class="slot-btn" data-time="16:00" onclick="selectSlot(this, 'Вс, 28 июня', '16:00')">16:00</button>
+                            <button class="slot-btn" data-time="20:00" onclick="selectSlot(this, 'Вс, 28 июня', '20:00')">20:00</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Footer Feedback -->
+                <div class="schedule-footer">
+                    <div class="selected-slot-indicator" id="selectedSlotIndicator">
+                        <span>Время не выбрано. Нажмите на любое активное время в сетке.</span>
+                    </div>
+                    <button class="btn btn-primary" id="scheduleBookBtn" onclick="scrollToSection('trial')" disabled>Забронировать это время</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online vs Offline Formats Section -->
+    <section class="section formats-section" id="formats">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Форматы обучения</h2>
+                <p class="section-subtitle">Сочетайте гибкость онлайн-занятий и глубину офлайн-интеграции</p>
+            </div>
+            
+            <div class="formats-container">
+                <!-- Online Card -->
+                <div class="format-card glass-card">
+                    <div class="format-icon-box cyan">
+                        <i data-lucide="monitor" class="format-icon"></i>
+                    </div>
+                    <h3 class="format-card-title">Online: Гибкость и Технологии</h3>
+                    <p class="format-card-text">
+                        Занимайтесь из любой точки мира на продвинутой интерактивной платформе. Подстраивайте график под себя и получайте мгновенную обратную связь от преподавателей.
+                    </p>
+                    <div class="format-features">
+                        <div class="feature-item">
+                            <i data-lucide="video" class="icon-cyan"></i>
+                            <div>
+                                <strong>Zoom-классы 1-на-1 и разговорные клубы</strong>
+                                <span>Интерактивные доски Miro и симуляторы тестов.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="database" class="icon-cyan"></i>
+                            <div>
+                                <strong>LMS Платформа 24/7</strong>
+                                <span>Ваш личный кабинет со словарем, записями уроков и домашними заданиями.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="message-square" class="icon-cyan"></i>
+                            <div>
+                                <strong>Поддержка куратора в Telegram</strong>
+                                <span>Решение организационных и учебных вопросов в течение 15 минут.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offline Card -->
+                <div class="format-card glass-card">
+                    <div class="format-icon-box gold">
+                        <i data-lucide="users" class="format-icon"></i>
+                    </div>
+                    <h3 class="format-card-title">Offline: Языковое Погружение</h3>
+                    <p class="format-card-text">
+                        Погрузитесь в атмосферу США еще до вылета. Специальные офлайн-интенсивы и бранчи в Москве и Нью-Йорке для отработки реальных жизненных ситуаций.
+                    </p>
+                    <div class="format-features">
+                        <div class="feature-item">
+                            <i data-lucide="coffee" class="icon-gold"></i>
+                            <div>
+                                <strong>Speaking Brunch & Netwerking</strong>
+                                <span>Разговорные встречи в американском стиле. Никакого русского языка.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="sparkles" class="icon-gold"></i>
+                            <div>
+                                <strong>Roleplay: Симуляция адаптации</strong>
+                                <span>Интерактивные офлайн-игры: прохождение таможни США, аренда жилья, нетворкинг-вечеринки.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="map-pin" class="icon-gold"></i>
+                            <div>
+                                <strong>Американские комьюнити-хабы</strong>
+                                <span>Локальные центры в Москве и Нью-Йорке для встреч со студентами и релокантами.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Rates Section -->
+    <section class="section rates-section section-dark" id="rates">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Тарифные планы</h2>
+                <p class="section-subtitle">Выберите формат, соответствующий вашему графику релокации и бюджету</p>
+                
+                <!-- Pricing Toggle -->
+                <div class="pricing-toggle-container">
+                    <span class="toggle-label" id="labelMonthly">Ежемесячно</span>
+                    <button class="pricing-toggle-btn" id="priceToggleBtn" onclick="toggleBillingPeriod()">
+                        <span class="toggle-circle"></span>
+                    </button>
+                    <span class="toggle-label" id="labelYearly">Год (скидка 20%)</span>
+                </div>
+            </div>
+
+            <div class="rates-grid">
+                <!-- Tariff 1 -->
+                <div class="rate-card glass-card">
+                    <h3 class="rate-card-name">Base Relocation</h3>
+                    <p class="rate-card-desc">Для самостоятельных студентов, желающих освоить базу для адаптации</p>
+                    <div class="rate-price">
+                        <span class="currency">₽</span>
+                        <span class="price-val" id="priceBase">18 500</span>
+                        <span class="period" id="periodBase">/ месяц</span>
+                    </div>
+                    <ul class="rate-benefits">
+                        <li><i data-lucide="check" class="icon-cyan"></i> 8 уроков в месяц с носителем</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Доступ к платформе и словарю 24/7</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Групповой разговорный клуб (2 раза в неделю)</li>
+                        <li><i data-lucide="x" class="icon-red"></i> Подготовка к TOEFL / IELTS</li>
+                        <li><i data-lucide="x" class="icon-red"></i> Подготовка к визовому интервью</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-outline w-full mt-auto">Начать подготовку</a>
+                </div>
+
+                <!-- Tariff 2 (Featured) -->
+                <div class="rate-card glass-card featured">
+                    <div class="card-glow"></div>
+                    <div class="popular-badge">Популярно для релокации</div>
+                    <h3 class="rate-card-name">USA Immersion Pro</h3>
+                    <p class="rate-card-desc">Полная интенсивная подготовка к переезду, работе и учебе в США</p>
+                    <div class="rate-price">
+                        <span class="currency">₽</span>
+                        <span class="price-val" id="pricePro">32 000</span>
+                        <span class="period" id="periodPro">/ месяц</span>
+                    </div>
+                    <ul class="rate-benefits">
+                        <li><i data-lucide="check" class="icon-gold"></i> 12 уроков в месяц с носителями языка</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> Подготовка к TOEFL / IELTS (включено)</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> 3 симуляции визового интервью</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> Разговорный клуб с акцентом на USA culture</li>
+                        <li><i data-lucide="check" class="icon-gold"></i> Telegram-чат с личным куратором</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-primary btn-glow w-full mt-auto">Выбрать USA Immersion</a>
+                </div>
+
+                <!-- Tariff 3 -->
+                <div class="rate-card glass-card">
+                    <h3 class="rate-card-name">VIP Relocation Coach</h3>
+                    <p class="rate-card-desc">Персональный разбор вашей ситуации от экспертов по адаптации и карьере в США</p>
+                    <div class="rate-price">
+                        <span class="currency">₽</span>
+                        <span class="price-val" id="priceVip">75 000</span>
+                        <span class="period" id="periodVip">/ месяц</span>
+                    </div>
+                    <ul class="rate-benefits">
+                        <li><i data-lucide="check" class="icon-cyan"></i> Безлимитные 1-на-1 сессии с ТОП-коучами</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Составление резюме и Cover Letter по стандартам США</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Симуляция рабочих и академических интервью</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Личный консьерж по визовым и бытовым вопросам</li>
+                        <li><i data-lucide="check" class="icon-cyan"></i> Офлайн бранчи в NYC и Москве бесплатно</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-outline w-full mt-auto">Выбрать VIP сопровождение</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes & Reviews Section -->
+    <section class="section outcome-section" id="reviews">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Результаты наших студентов</h2>
+                <p class="section-subtitle">Реальные истории людей, которые преодолели барьер, сдали экзамены и адаптировались в США.</p>
+            </div>
+            <div class="outcome-grid">
+                <!-- Review 1 -->
+                <article class="glass-card outcome-card">
+                    <div class="review-header">
+                        <img src="assets/teacher_sarah.png" alt="Мария" class="review-avatar" style="width:50px; height:50px; border-radius:50%; object-fit:cover; margin-bottom:1rem; border:2px solid var(--color-accent);">
+                        <div>
+                            <h3 style="font-size:1.1rem; margin-bottom:2px;">Мария К.</h3>
+                            <span style="font-size:0.8rem; color:var(--color-text-secondary);">Релокация в Торонто, Канада</span>
+                        </div>
+                    </div>
+                    <p class="review-text" style="font-style:italic; margin-bottom:1.5rem; color:var(--color-text-primary); font-size:0.95rem;">“Сдала IELTS на 7.5 за 3 месяца. Больше всего помогли симуляции устной части под давлением таймера и детальные разборы моих эссе.”</p>
+                    <span class="review-outcome" style="display:block; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-green);">Результат: <strong style="color:var(--color-green); font-weight:900;">IELTS 7.5</strong></span>
+                </article>
+                <!-- Review 2 -->
+                <article class="glass-card outcome-card">
+                    <div class="review-header">
+                        <img src="assets/teacher_john.png" alt="Дмитрий" class="review-avatar" style="width:50px; height:50px; border-radius:50%; object-fit:cover; margin-bottom:1rem; border:2px solid var(--color-accent);">
+                        <div>
+                            <h3 style="font-size:1.1rem; margin-bottom:2px;">Дмитрий М.</h3>
+                            <span style="font-size:0.8rem; color:var(--color-text-secondary);">Оффер в Сан-Франциско, США</span>
+                        </div>
+                    </div>
+                    <p class="review-text" style="font-style:italic; margin-bottom:1.5rem; color:var(--color-text-primary); font-size:0.95rem;">“Готовился к поведенческому интервью в ИТ-компанию. Провели 4 mock-интервью по методу STAR. Отработали каверзные вопросы. Получил оффер.”</p>
+                    <span class="review-outcome" style="display:block; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-green);">Результат: <strong style="color:var(--color-green); font-weight:900;">Оффер в США</strong></span>
+                </article>
+                <!-- Review 3 -->
+                <article class="glass-card outcome-card">
+                    <div class="review-header">
+                        <img src="assets/teacher_david.png" alt="Елена" class="review-avatar" style="width:50px; height:50px; border-radius:50%; object-fit:cover; margin-bottom:1rem; border:2px solid var(--color-accent);">
+                        <div>
+                            <h3 style="font-size:1.1rem; margin-bottom:2px;">Елена С.</h3>
+                            <span style="font-size:0.8rem; color:var(--color-text-secondary);">Адаптация детей, Чикаго</span>
+                        </div>
+                    </div>
+                    <p class="review-text" style="font-style:italic; margin-bottom:1.5rem; color:var(--color-text-primary); font-size:0.95rem;">“Моя дочь (12 лет) занималась перед переездом. В американской школе адаптировалась за месяц, уже свободно общается со сверстниками и понимает уроки.”</p>
+                    <span class="review-outcome" style="display:block; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--color-green);">Результат: <strong style="color:var(--color-green); font-weight:900;">Успешная интеграция</strong></span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trial Lesson Section -->
+    <section class="section trial-section section-accent" id="trial">
+        <div class="container trial-container">
+            <div class="trial-info">
+                <h2 class="trial-title">Запишитесь на бесплатный пробный урок</h2>
+                <p class="trial-text">
+                    Начните свой путь к свободной жизни в США. На бесплатном 30-минутном занятии мы:
+                </p>
+                <ul class="trial-list">
+                    <li><i data-lucide="check-circle-2" class="icon-cyan"></i> Определим ваш точный уровень языка по шкале CEFR и шкале адаптации</li>
+                    <li><i data-lucide="check-circle-2" class="icon-cyan"></i> Составим персональный план обучения под ваши сроки переезда</li>
+                    <li><i data-lucide="check-circle-2" class="icon-cyan"></i> Подскажем, какой тариф не будет избыточным под вашу цель</li>
+                </ul>
+                <div class="trial-guarantee">
+                    <i data-lucide="shield" class="icon-gold"></i>
+                    <span>Конфиденциально и профессионально. Без обязательств к покупке.</span>
+                </div>
+            </div>
+            
+            <div class="trial-form-box glass-card">
+                <form id="trialBookingForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="userName">Ваше имя</label>
+                        <input type="text" id="userName" name="name" placeholder="Иван Иванов" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="userPhone">Телефон / Telegram</label>
+                            <input type="text" id="userPhone" name="contact" placeholder="Телефон, почта или Telegram" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userLevel">Ваш примерный уровень</label>
+                            <select id="userLevel" name="level">
+                                <option value="unknown">Не знаю</option>
+                                <option value="A1-A2">A1 - A2 (Начинающий)</option>
+                                <option value="B1">B1 (Средний)</option>
+                                <option value="B2">B2 (Выше среднего)</option>
+                                <option value="C1-C2">C1 - C2 (Продвинутый)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="relocationGoal">Цель и сроки релокации</label>
+                        <textarea id="relocationGoal" name="goal" rows="2" placeholder="Например: интервью через 6 месяцев, TOEFL, учеба или первые месяцы после переезда"></textarea>
+                    </div>
+                    
+                    <!-- Calendar selection reflection -->
+                    <div class="form-slot-reflection" id="formSlotReflection" style="display:none;">
+                        <i data-lucide="calendar-check" class="icon-gold"></i>
+                        <div>
+                            <strong>Выбранное время в расписании:</strong>
+                            <span id="selectedSlotText">Пн, 22 июня в 10:00 (МСК)</span>
+                            <input type="hidden" id="hiddenSlotDate" name="slotDate">
+                            <input type="hidden" id="hiddenSlotTime" name="slotTime">
+                        </div>
+                        <button type="button" class="btn-clear-slot" onclick="clearSelectedSlot(event)" title="Очистить выбор времени">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="form-agreement" style="margin-bottom: 1.25rem; display: flex; gap: 0.6rem; align-items: flex-start; text-align: left;">
+                        <input type="checkbox" id="agreementCheckbox" name="agreement" required style="width: auto; margin-top: 0.25rem; cursor: pointer;">
+                        <label for="agreementCheckbox" style="font-size: 0.75rem; color: var(--color-text-secondary); line-height: 1.4; font-weight: normal; cursor: pointer;">
+                            Я даю <a href="privacy.html" target="_blank" style="color: var(--color-primary); text-decoration: underline;">согласие на обработку персональных данных</a> на условиях Согласия и Политики конфиденциальности.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-glow w-full mt-4">Записаться на бесплатный урок</button>
+                    <p class="trial-note">После заявки куратор предложит 2-3 окна и попросит коротко описать цель: экзамен, интервью, работа или адаптация.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Account Simulation Dashboard (Interactive overlay modal) -->
+    <div class="cabinet-modal-overlay" id="cabinetModal">
+        <div class="cabinet-modal-container glass-card">
+            <!-- Cabinet Header -->
+            <div class="cabinet-header">
+                <div class="cabinet-brand">
+                    <div class="logo-indicator"></div>
+                    <span class="logo-accent">LIBERTY</span><span class="logo-sub">STUDENT HUB</span>
+                </div>
+                <div class="cabinet-user-summary">
+                    <img src="assets/teacher_sarah.png" loading="lazy" decoding="async" alt="Student Avatar" class="student-avatar">
+                    <div class="student-info-small">
+                        <div class="student-name">Александр К.</div>
+                        <div class="student-program">Программа: <strong>USA Immersion Pro</strong></div>
+                    </div>
+                </div>
+                <button class="btn-close-cabinet" onclick="toggleCabinetModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Cabinet Body -->
+            <div class="cabinet-body">
+                <!-- Cabinet Sidebar Navigation -->
+                <aside class="cabinet-sidebar">
+                    <button class="cabinet-nav-item active" data-tab="home" onclick="switchCabinetTab('home')">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Панель управления</span>
+                    </button>
+                    <button class="cabinet-nav-item" data-tab="vocab" onclick="switchCabinetTab('vocab')">
+                        <i data-lucide="book-marked"></i>
+                        <span>Мой словарь</span>
+                        <span class="vocab-badge" id="vocabBadgeCount">12</span>
+                    </button>
+                    <button class="cabinet-nav-item" data-tab="homework" onclick="switchCabinetTab('homework')">
+                        <i data-lucide="file-check-2"></i>
+                        <span>Домашние задания</span>
+                        <span class="hw-badge" id="hwBadgeCount">2</span>
+                    </button>
+                </aside>
+
+                <!-- Cabinet Content Pane -->
+                <main class="cabinet-content">
+                    
+                    <!-- TAB: HOME -->
+                    <div class="cabinet-tab-pane active" id="tab-home">
+                        <div class="cabinet-welcome">
+                            <h2>С возвращением, Александр!</h2>
+                            <p>Ваша подготовка идет по плану. Готовность к релокации оценивается высоко.</p>
+                        </div>
+                        
+                        <!-- Progress Card and Countdown Row -->
+                        <div class="cabinet-row">
+                            <!-- Progress Circle/Card -->
+                            <div class="cabinet-card progress-card">
+                                <h3>Индекс готовности к переезду</h3>
+                                <div class="progress-container-large">
+                                    <div class="progress-bar-circular" id="relocationProgressCircle">
+                                        <div class="progress-circle-inner">
+                                            <span class="progress-pct" id="relocationProgressPct">68%</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-details-text">
+                                        <p>Выполняйте домашние задания и учите новые слова, чтобы увеличить ваш индекс готовности.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Countdown Lesson Card -->
+                            <div class="cabinet-card next-lesson-card">
+                                <h3>Следующее занятие</h3>
+                                <div class="lesson-meta">
+                                    <div class="lesson-teacher">
+                                        <img src="assets/teacher_john.png" loading="lazy" decoding="async" alt="John" class="avatar-micro">
+                                        <div>
+                                            <strong>John Davis</strong>
+                                            <span>Разговорный английский & Акцент</span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-time-box">
+                                        <i data-lucide="clock"></i>
+                                        <span>Сегодня в 19:00 (по Москве)</span>
+                                    </div>
+                                </div>
+                                <div class="countdown-timer-box">
+                                    <div class="timer-title">До начала осталось:</div>
+                                    <div class="timer-digits" id="lessonCountdown">02ч : 14м : 45с</div>
+                                </div>
+                                <div class="lesson-actions">
+                                    <button class="btn btn-primary btn-sm w-full" onclick="simulateJoinLesson()">Войти в класс</button>
+                                    <button class="btn btn-outline btn-sm" onclick="simulateReschedule()">Перенести урок</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feedback from Teacher -->
+                        <div class="cabinet-card teacher-feedback-card">
+                            <div class="card-header-flex">
+                                <h3>Последний фидбек от преподавателя</h3>
+                                <span class="feedback-date">Вчера, 21 июня</span>
+                            </div>
+                            <div class="feedback-body">
+                                <div class="avatar-micro-wrapper">
+                                    <img src="assets/teacher_john.jpg" loading="lazy" decoding="async" alt="John" class="avatar-micro">
+                                </div>
+                                <div class="feedback-text">
+                                    <blockquote>
+                                        "Alexander is showing great progress with phrasal verbs, specifically business idioms related to tech startups. On our next class, we will focus on behavioral interview mock-questions. Make sure to review the vocabulary list!"
+                                    </blockquote>
+                                    <span class="feedback-author">John Davis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: VOCABULARY -->
+                    <div class="cabinet-tab-pane" id="tab-vocab">
+                        <div class="vocab-header">
+                            <div>
+                                <h2>Интерактивный словарь релоканта</h2>
+                                <p>Учите слова, необходимые для интеграции в американскую среду.</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="openAddWordModal()">
+                                <i data-lucide="plus"></i> Добавить слово
+                            </button>
+                        </div>
+
+                        <!-- Flashcard Area -->
+                        <div class="vocab-trainer-box glass-card">
+                            <h3 class="trainer-title">Тренировка слов (Карточки)</h3>
+                            <div class="flashcard-container" id="flashcardDeck" onclick="flipFlashcard()">
+                                <div class="flashcard-inner" id="flashcardInner">
+                                    <div class="flashcard-front">
+                                        <span class="fc-word" id="fcFrontWord">to run custom verification</span>
+                                        <span class="fc-hint">Нажмите для перевода</span>
+                                    </div>
+                                    <div class="flashcard-back">
+                                        <span class="fc-word-translation" id="fcBackWord">выполнять индивидуальную проверку</span>
+                                        <span class="fc-hint">Перевод</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trainer-controls">
+                                <button class="btn btn-outline btn-sm text-red" onclick="markCardKnowledge(false, event)">
+                                    <i data-lucide="thumbs-down"></i> Не знаю
+                                </button>
+                                <button class="btn btn-primary btn-sm btn-glow text-green" onclick="markCardKnowledge(true, event)">
+                                    <i data-lucide="thumbs-up"></i> Знаю
+                                </button>
+                            </div>
+                            <div class="trainer-progress">
+                                Карточка <span id="currentCardIndex">1</span> из <span id="totalCardsCount">12</span>
+                            </div>
+                        </div>
+
+                        <!-- Word List Table -->
+                        <div class="vocab-list-box">
+                            <h3>Мой список слов</h3>
+                            <div class="vocab-table-wrapper">
+                                <table class="vocab-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Слово / Выражение</th>
+                                            <th>Перевод</th>
+                                            <th>Тип / Категория</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="vocabTableBody">
+                                        <!-- Will be dynamically populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: HOMEWORK -->
+                    <div class="cabinet-tab-pane" id="tab-homework">
+                        <div class="homework-header">
+                            <h2>Домашние задания</h2>
+                            <p>Выполняйте задания для тренировки навыков. Каждый чекбокс повышает ваш Индекс готовности к релокации.</p>
+                        </div>
+                        
+                        <div class="homework-list" id="homeworkListContainer">
+                            <!-- Homework item 1 -->
+                            <div class="homework-item glass-card" id="hw-1">
+                                <div class="hw-checkbox-wrapper">
+                                    <input type="checkbox" id="chk-hw-1" class="hw-checkbox" onchange="toggleHomework('hw-1', this.checked)">
+                                    <label for="chk-hw-1" class="hw-checkbox-label"></label>
+                                </div>
+                                <div class="hw-content">
+                                    <div class="hw-title-row">
+                                        <h3>Написать Cover Letter (чтобы рекрутер прослезился)</h3>
+                                        <span class="hw-status-badge pending">В процессе</span>
+                                    </div>
+                                    <p class="hw-desc">Составьте сопроводительное письмо в Apple или Google. Ваша задача: описать свой опыт так, будто вы единолично спасли интернет от падения в 2024 году, используя 5 агрессивно-уверенных глаголов действия.</p>
+                                    <div class="hw-meta">
+                                        <span><i data-lucide="calendar"></i> Дедлайн: 25 июня</span>
+                                        <span><i data-lucide="award"></i> Влияние на готовность: <strong>+12%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Homework item 2 -->
+                            <div class="homework-item glass-card" id="hw-2">
+                                <div class="hw-checkbox-wrapper">
+                                    <input type="checkbox" id="chk-hw-2" class="hw-checkbox" onchange="toggleHomework('hw-2', this.checked)">
+                                    <label for="chk-hw-2" class="hw-checkbox-label"></label>
+                                </div>
+                                <div class="hw-content">
+                                    <div class="hw-title-row">
+                                        <h3>Выучить 15 идиом (чтобы не кивать глупо боссу)</h3>
+                                        <span class="hw-status-badge pending">В процессе</span>
+                                    </div>
+                                    <p class="hw-desc">Изучите карточки в разделе «Мой словарь». Вы должны научиться понимать разницу между "to drop the ball" (ошибиться) и "to play it by ear" (действовать по ситуации), чтобы не принести гитару на совещание.</p>
+                                    <div class="hw-meta">
+                                        <span><i data-lucide="calendar"></i> Дедлайн: сегодня, 19:00</span>
+                                        <span><i data-lucide="award"></i> Влияние на готовность: <strong>+10%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Homework item 3 (completed example) -->
+                            <div class="homework-item glass-card completed" id="hw-3">
+                                <div class="hw-checkbox-wrapper">
+                                    <input type="checkbox" id="chk-hw-3" class="hw-checkbox" checked onchange="toggleHomework('hw-3', this.checked)">
+                                    <label for="chk-hw-3" class="hw-checkbox-label"></label>
+                                </div>
+                                <div class="hw-content">
+                                    <div class="hw-title-row">
+                                        <h3>DS-160: ответы без паники</h3>
+                                        <span class="hw-status-badge done">Выполнено</span>
+                                    </div>
+                                    <p class="hw-desc">Разберите типовые поля анкеты и подготовьте спокойные ответы на вопросы, которые часто вызывают сомнения.</p>
+                                    <div class="hw-meta">
+                                        <span><i data-lucide="calendar"></i> Выполнено: 20 июня</span>
+                                        <span><i data-lucide="award"></i> Влияние на готовность: <strong>+15%</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Word Adding Dialog Modal (Inside Personal Account) -->
+    <div class="modal-overlay" id="addWordModal" style="display: none;">
+        <div class="modal-content glass-card mini-modal">
+            <h3>Добавить слово в словарь</h3>
+            <form id="addWordForm" onsubmit="addNewWord(event)">
+                <div class="form-group">
+                    <label for="newWordEng">Слово / Выражение (Eng)</label>
+                    <input type="text" id="newWordEng" placeholder="touch base" required>
+                </div>
+                <div class="form-group">
+                    <label for="newWordRus">Перевод (Rus)</label>
+                    <input type="text" id="newWordRus" placeholder="связаться / обсудить детали" required>
+                </div>
+                <div class="form-group">
+                    <label for="newWordCategory">Категория</label>
+                    <select id="newWordCategory">
+                        <option value="Idioms">Идиомы</option>
+                        <option value="Relocation">Релокация</option>
+                        <option value="Business">Бизнес и интервью</option>
+                        <option value="Slang">Сленг</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="closeAddWordModal()">Отмена</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback / Form Submission Success Modal -->
+    <div class="modal-overlay" id="successModal" style="display: none;">
+        <div class="modal-content glass-card text-center success-modal">
+            <div class="success-icon-wrapper">
+                <i data-lucide="party-popper" class="icon-gold-large"></i>
+            </div>
+            <h2>Заявка успешно отправлена!</h2>
+            <p id="successModalText">Мы зарезервировали время в расписании и свяжемся с вами в Telegram/WhatsApp в течение 10 минут для подтверждения.</p>
+            <div class="selected-time-summary" id="successSlotSummary" style="display:none;">
+                <i data-lucide="clock"></i>
+                <span id="successSlotText">Пн, 22 июня в 10:00 (МСК)</span>
+            </div>
+            <button class="btn btn-primary btn-glow" onclick="closeSuccessModal()">Отлично</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-accent">LIBERTY</span><span class="logo-sub">ACADEMY</span>
+                </a>
+                <p class="footer-brand-text">
+                    Премиальная языковая подготовка для амбициозных людей, стремящихся реализовать свой потенциал в Соединенных Штатах Америки.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
+                    <a href="#" class="social-link"><i data-lucide="message-circle"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-nav">
+                <h3>Академия</h3>
+                <a href="#languages">Программы</a>
+                <a href="#test">Тест на уровень</a>
+                <a href="#teachers">Преподаватели</a>
+                <a href="#schedule">Интерактивное расписание</a>
+            </div>
+
+            <div class="footer-nav">
+                <h3>Информация</h3>
+                <a href="#formats">Форматы онлайн / офлайн</a>
+                <a href="#rates">Тарифные планы</a>
+                <a href="#trial">Запись на пробный урок</a>
+                <a href="#" onclick="toggleCabinetModal(); return false;">Личный кабинет студента</a>
+            </div>
+
+            <div class="footer-contacts">
+                <h3>Контакты</h3>
+                <a href="mailto:bul82@yandex.ru" class="contact-link"><i data-lucide="mail"></i> bul82@yandex.ru</a>
+                <p class="contact-address"><i data-lucide="map-pin"></i> Москва, Пресненская наб. 12 (Москва-Сити)<br>New York, 120 Broadway (Manhattan)</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Liberty English Academy. Все права защищены. Разработано специально для подготовки к переезду в США.</p>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js?v=2.1"></script>
 </body>
 </html>

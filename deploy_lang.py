@@ -55,6 +55,7 @@ def deploy():
     
     print(f"\nCreating release directory on server: {remote_release_dir}")
     run_command_over_ssh(ssh, f"mkdir -p {remote_release_dir}/assets")
+    run_command_over_ssh(ssh, f"mkdir -p {remote_release_dir}/cms")
     
     # 3. Upload files via SFTP
     print("\nUploading project code and assets via SFTP...")
@@ -80,6 +81,13 @@ def deploy():
                     print(f"Uploading asset: assets/{f}")
                     sftp.put(local_path, remote_path)
             
+        # Upload CMS server.py
+        local_cms_server = os.path.join(LOCAL_DIR, "cms", "server.py")
+        if os.path.exists(local_cms_server):
+            remote_cms_path = f"{remote_release_dir}/cms/server.py"
+            print(f"Uploading CMS server: cms/server.py -> {remote_cms_path}")
+            sftp.put(local_cms_server, remote_cms_path)
+
         sftp.close()
         print("All assets uploaded successfully!")
     except Exception as e:
@@ -103,6 +111,11 @@ def deploy():
     # 5. Fix permissions for www-data
     print("\nSetting ownership permissions on remote server...")
     run_command_over_ssh(ssh, f"chown -R www-data:www-data {remote_base_dir}")
+    
+    # 6. Restart the CMS systemd service
+    print("\nRestarting Liberty English Academy CMS Backend service...")
+    run_command_over_ssh(ssh, "systemctl daemon-reload")
+    run_command_over_ssh(ssh, "systemctl restart land-lang-cms.service")
         
     ssh.close()
     print("\n=== Land Liberty Academy VPS Deployment Completed Successfully! ===")

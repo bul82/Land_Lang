@@ -2,6 +2,8 @@ import os
 import json
 import secrets
 import hmac
+import sqlite3
+import urllib.request
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from jinja2 import Template
@@ -181,7 +183,79 @@ def upload_file():
         "url": relative_path
     }), 200
 
+def init_leads_db():
+    """Initializes SQLite database for storing academy leads."""
+    db_path = os.path.join(PROJECT_DIR, 'liberty_academy.db')
+    conn = sqlite3.connect(db_path)
+    conn.execute('''CREATE TABLE IF NOT EXISTS applications (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        contact TEXT NOT NULL,
+        level TEXT,
+        date TEXT,
+        time TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )''')
+    conn.commit()
+    conn.close()
+
+@app.route('/api/booking', methods=['POST', 'OPTIONS'])
+def save_booking():
+    if request.method == 'OPTIONS':
+        return jsonify({"status": "ok"}), 200
+
+    data = request.json
+    name = data.get('name', '').strip()
+    contact = data.get('contact', '').strip()
+    level = data.get('level', '').strip()
+    date = data.get('date', '').strip()
+    time = data.get('time', '').strip()
+
+    if not name or not contact:
+        return jsonify({'error': 'Name and Contact are required.'}), 400
+
+    # Save to SQLite
+    db_path = os.path.join(PROJECT_DIR, 'liberty_academy.db')
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        'INSERT INTO applications (name, contact, level, date, time) VALUES (?, ?, ?, ?, ?)',
+        (name, contact, level, date, time)
+    )
+    conn.commit()
+    conn.close()
+
+    # Send Telegram notification
+    token = os.getenv('TELEGRAM_BOT_TOKEN')
+    chat_id = os.getenv('TELEGRAM_CHAT_ID')
+    if token and chat_id:
+        tg_text = (
+            f"🔔 *Новая запись на пробный урок!*\n"
+            f"🏫 *Сайт:* Liberty English Academy\n"
+            f"👤 *Имя:* {name}\n"
+            f"📞 *Контакт:* {contact}\n"
+            f"📈 *Уровень:* {level}\n"
+            f"📅 *Дата:* {date}\n"
+            f"⏰ *Время:* {time}"
+        )
+        url = f'https://api.telegram.org/bot{token}/sendMessage'
+        payload = json.dumps({
+            'chat_id': chat_id,
+            'text': tg_text,
+            'parse_mode': 'Markdown'
+        }).encode('utf-8')
+        req = urllib.request.Request(url, data=payload, headers={'Content-Type': 'application/json'})
+        try:
+            with urllib.request.urlopen(req, timeout=10) as response:
+                pass
+        except Exception as e:
+            print(f"Telegram error: {e}")
+
+    return jsonify({'success': True}), 201
+
 if __name__ == "__main__":
+    # Initialize leads database
+    init_leads_db()
+    
     # If starting server directly, load initial content to compile index.html
     try:
         if os.path.exists(CONTENT_PATH):
@@ -197,3 +271,4 @@ if __name__ == "__main__":
         port=int(os.environ.get("CMS_PORT", "5000")),
         debug=os.environ.get("CMS_DEBUG", "0") == "1",
     )
+
